@@ -9,7 +9,7 @@ module.exports = function(request, response) {
     var thingPromise = getter.getThing(thingName);
 
     thingPromise.done(function success(thing){
-        response.send(200, thing);
+        response.send(thing);
     }, function error(err){
         response.send(500,'An internal server error has occured');
     });

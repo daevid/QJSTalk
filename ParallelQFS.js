@@ -14,7 +14,7 @@ var readFile = Q.denodeify(fs.readFile);
 
     return Q.all( [ firstPromise, secondPromise, thirdPromise ] )
             .spread( function (first, second, third) {
-                var intersection = _.intersection(first, second, third);
-                _.intersection(first, second, third).forEach(console.log);
+                _.intersection(first, second, third)
+                    .forEach(console.log);
             });
 })();

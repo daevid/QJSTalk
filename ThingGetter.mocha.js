@@ -2,7 +2,7 @@
 var chai = require( "chai" ), should = chai.should(), expect = chai.expect,
     sinon = require( "sinon" ), sinonChai = require( "sinon-chai"),
     Q = require( "q" ), mockery = require('mockery');
-    chai.use( sinonChai );
+chai.use( sinonChai );
 
 describe('ThingGetter', function (){
     before(function(){
