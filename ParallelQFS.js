@@ -6,7 +6,7 @@ var readFile = Q.denodeify(fs.readFile);
 (function compareFileLists(){
     var firstPromise = readFile('JsonList1.json')
         .then(function (result) {
-            JSON.parse(result);
+            return JSON.parse(result);
         });
     //these are the same as firstPromise above, but shorter!
     var secondPromise = readFile('JsonList2.json').then(JSON.parse);

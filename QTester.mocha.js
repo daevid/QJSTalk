@@ -18,7 +18,7 @@ function functionToTest(aValue, someFunction) {
         });
 }
 
-describe('functionWereGonnaTest', function(){
+describe('functionToTest', function(){
     //This example is very stupid
     it('should call someFunction on the looked up return value', function() {
         var functionToVerifyWasCalled = sinon.stub();

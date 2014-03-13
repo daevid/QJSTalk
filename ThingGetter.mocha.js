@@ -17,11 +17,11 @@ describe('ThingGetter', function (){
 
     describe('getThing', function(){
         var subjectUnderTest, mockFs = {};
-        var fakeThing1 = {
-            name: 'thing1'
+        var fooThing = {
+            name: 'foo'
         };
-        var fakeThing2 = {
-            name: 'thing2'
+        var barThing = {
+            name: 'bar'
         };
 
         before(function(){ //runs once
@@ -30,22 +30,22 @@ describe('ThingGetter', function (){
         });
         beforeEach(function(){ //runs for every test
             mockFs.readFile = sinon.stub();
-            mockFs.readFile.withArgs('thing1').yields(null, fakeThing1);
-            mockFs.readFile.withArgs('thing2').yields(null, fakeThing2);
+            mockFs.readFile.withArgs('foo').yields(null, fooThing);
+            mockFs.readFile.withArgs('bar').yields(null, barThing);
         });
 
         //1.1
-        it('should return thing2 when asked', function (done) {
-            var thing2Promise = subjectUnderTest.getThing('thing2');
+        it('should return barThing when asked', function (done) {
+            var thing2Promise = subjectUnderTest.getThing('bar');
             thing2Promise.then(function (result){
-                expect(result.name).to.equal('thing2');
+                expect(result.name).to.equal('bar');
                 done();
             });
         });
         /*
         //1.2
         it('should fail when asked for thing3', function (done) {
-            //mockFs.readFile.withArgs('thing3').yields(new Error('haha'), null);
+            mockFs.readFile.withArgs('thing3').yields(new Error('haha'), null);
             var thing2Promise = subjectUnderTest.getThing('thing3');
             thing2Promise.done(function (result){
                 done(new Error('Promise should have failed'));

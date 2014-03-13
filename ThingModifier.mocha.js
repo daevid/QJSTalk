@@ -31,8 +31,8 @@ describe('ThingModifer', function (){
         });
         //1.1
         it('should change the original thing', function(){
-            var promise = subjectUnderTest.modify('a thing');
-            expect(mockThingChanger.change).to.have.been.calledWithExactly(originalThing);
+            subjectUnderTest.modify('a thing');
+            expect(mockThingChanger.change).to.have.been.calledWith(originalThing);
         });
         //1.2
         it('should return the changed thing', function(){

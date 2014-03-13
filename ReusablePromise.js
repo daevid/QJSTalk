@@ -9,6 +9,7 @@ var listPromise = readFile('JsonList1.json').then(JSON.parse);
 //Two different paths...
 //printFirstValue takes a result
 listPromise.then(printFirstValue);
+
 //while printLastValue takes a promise
 printLastValue(listPromise);
 
