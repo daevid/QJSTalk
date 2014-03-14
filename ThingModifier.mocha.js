@@ -30,12 +30,20 @@ describe('ThingModifer', function (){
             subjectUnderTest = require('./ThingModifier');
         });
         //1.1
-        it('should change the original thing', function(){
-            subjectUnderTest.modify('a thing');
-            expect(mockThingChanger.change).to.have.been.calledWith(originalThing);
+        it('should change the original thing', function(done){
+            var promise = subjectUnderTest.modify('a thing');
+            promise.done(function(){
+                expect(mockThingChanger.change).to.have.been.calledWith(originalThing);
+                done();
+            });
         });
         //1.2
-        it('should return the changed thing', function(){
+        it('should return the changed thing', function(done){
+            var promise = subjectUnderTest.modify('a thing');
+            promise.done(function(result){
+                expect(result).to.equal(changedThing);
+                done();
+            });
             //fill me in!
         });
     });

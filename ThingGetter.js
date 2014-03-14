@@ -3,6 +3,7 @@ var fs = require('fs'),
 
 module.exports = {
     getThing: function(thingName){
-        return Q.ninvoke(fs, 'readFile', thingName);
+        return Q.ninvoke(fs, 'readFile', thingName)
+                .then(JSON.parse);
     }
 };

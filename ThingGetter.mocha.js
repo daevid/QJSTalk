@@ -17,12 +17,12 @@ describe('ThingGetter', function (){
 
     describe('getThing', function(){
         var subjectUnderTest, mockFs = {};
-        var fooThing = {
+        var fooThing = JSON.stringify({
             name: 'foo'
-        };
-        var barThing = {
+        });
+        var barThing = JSON.stringify({
             name: 'bar'
-        };
+        });
 
         before(function(){ //runs once
             mockery.registerMock('fs', mockFs);
@@ -37,15 +37,15 @@ describe('ThingGetter', function (){
         //1.1
         it('should return barThing when asked', function (done) {
             var thing2Promise = subjectUnderTest.getThing('bar');
-            thing2Promise.then(function (result){
+            thing2Promise.done(function (result){
                 expect(result.name).to.equal('bar');
                 done();
             });
         });
-        /*
+        
         //1.2
         it('should fail when asked for thing3', function (done) {
-            mockFs.readFile.withArgs('thing3').yields(new Error('haha'), null);
+            mockFs.readFile.withArgs('thing3').yields(null, '{"thing": "something"}');
             var thing2Promise = subjectUnderTest.getThing('thing3');
             thing2Promise.done(function (result){
                 done(new Error('Promise should have failed'));
@@ -53,6 +53,5 @@ describe('ThingGetter', function (){
                 done();
             });
         });
-        */
     });
 });

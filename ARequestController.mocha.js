@@ -46,7 +46,10 @@ describe('ARequestController', function (){
                 var mockRequest = { query: {}};
                 mockRequest.query.thing = 'thing2';
                 var mockResponse = {};
-                //ADD ASSERTS
+                mockResponse.send = function(response){
+                    expect(response).to.equal(fakeThing2);
+                    done();
+                };
                 subjectUnderTest(mockRequest, mockResponse);
             });
 
@@ -56,9 +59,11 @@ describe('ARequestController', function (){
                 var mockRequest = { query: {} };
                 mockRequest.query.thing = 'invalidThing';
                 var mockResponse = {};
-                //ADD ASSERTS
+                mockResponse.send = function(responseCode){
+                    expect(responseCode).to.equal(500);
+                    done();
+                };
                 subjectUnderTest(mockRequest, mockResponse);
             });
-
     });
 });

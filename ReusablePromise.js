@@ -20,6 +20,7 @@ var trimmedListPromise = listPromise.then(function(list){
 
 printLastValue(trimmedListPromise);
 
+console.log('Hi node js users group');
 
 function printFirstValue(list){
     console.log(list[0]);

@@ -20,11 +20,17 @@ function functionToTest(aValue, someFunction) {
 
 describe('functionToTest', function(){
     //This example is very stupid
-    it('should call someFunction on the looked up return value', function() {
+    it('should call someFunction on the looked up return value',
+        function(done) {
         var functionToVerifyWasCalled = sinon.stub();
 
-        functionToTest('some value', functionToVerifyWasCalled);
+        var promise =functionToTest('some value',
+                functionToVerifyWasCalled);
 
-        functionToVerifyWasCalled.should.have.been.calledWith('SomeReturnValue');
+        promise.done(function(result){
+            functionToVerifyWasCalled.should.
+                have.been.calledWith('SomeReturnValue');
+            done();
+        });
     });
 });
